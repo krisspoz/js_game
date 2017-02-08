@@ -6,9 +6,9 @@ var pickRock = document.getElementById('js-playerPick_rock'),
     pickPaper = document.getElementById('js-playerPick_paper'),
     pickScissors = document.getElementById('js-playerPick_scissors');
 
-pickRock.addEventListener('click', function() { playerPick('rock') });
-pickPaper.addEventListener('click', function() { playerPick('paper') });
-pickScissors.addEventListener('click', function() { playerPick('scissors') });
+pickRock.addEventListener('click', function() { playerPick('rock'); });
+pickPaper.addEventListener('click', function() { playerPick('paper'); });
+pickScissors.addEventListener('click', function() { playerPick('scissors'); });
 
 var gameState = 'notStarted',  //started // ended
     player = {
@@ -24,7 +24,7 @@ var newGameBtn = document.getElementById('js-newGameButton'),
     pickElem = document.getElementById('js-playerPickElement'),
     resultsElem = document.getElementById('js-resultsTableElement');
 
-function setGameElements() {
+function setGameElements(gameState) {
   switch(gameState) {
     case 'started':
         newGameElem.style.display = 'none';
@@ -52,7 +52,7 @@ function newGame() {
   if (player.name) {
     player.score = computer.score = 0;
     gameState = 'started';
-    setGameElements();
+    setGameElements('started');
 
     playerNameElem.innerHTML = player.name;
     setGamePoints();
@@ -123,11 +123,11 @@ function setGamePoints() {
 console.log(player.score);
 
 function gameOver () {
-	if (player.score == 10) {
-		alert('Wygrałeś!!!');
-		setGameElements('ended');
-	} else if (computer.score == 10) {
-		alert('Przegrałeś!!!');
-		setGameElements('ended');
-	}
+    if (player.score == 10) {
+        alert('Wygrałeś!!!');
+        setGameElements('ended');
+    } else if (computer.score == 10) {
+        alert('Przegrałeś!!!');
+        setGameElements('ended');
+    }
 }
